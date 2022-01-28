@@ -1,29 +1,25 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import App from '../App';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
+import { About } from '../components';
 
-describe('Testing App component', () => {
-  it('Should have home, about and favorites links', () => {
-    renderWithRouter(<App />);
-    const linkHome = screen.getByRole('link', { name: 'Home' });
-    const linkAbout = screen.getByRole('link', { name: 'About' });
-    const linkFavorite = screen.getByRole('link', { name: 'Favorite Pokémons' });
-    expect(linkHome).toBeInTheDocument();
-    expect(linkAbout).toBeInTheDocument();
-    expect(linkFavorite).toBeInTheDocument();
+describe('Testing About component', () => {
+  it('Should have an h2 with the text "About Pokédex"', () => {
+    renderWithRouter(<About />);
+    const aboutText = screen.getByRole('heading', { name: /About Pokédex/i, level: 2 });
+    expect(aboutText).toBeInTheDocument();
   });
-  // it('Should redirect to "/" when clicking the home link', () => {
-  //   const { history } = renderWithRouter(<App />);
-  //   const linkHome = screen.getByRole('link', { name: 'Home' });
-  //   userEvent.click(linkHome);
-  //   history.push('/');
-  //   const { pathname } = history.location;
-  //   expect(pathname).toBe('/');
-  // });
+  it('Should have two <p> with text', () => {
+    renderWithRouter(<About />);
+    const p1 = screen.getByText(/This application simulates a Pokédex/i); // Dica Lucas Petzinger, só precisamos de parte da frase para ele achar o elemento
+    const p2 = screen.getByText(/One can filter Pokémons by type/i);
+    expect(p1).toBeInTheDocument();
+    expect(p2).toBeInTheDocument();
+  });
+  it('Should have an specific image', () => {
+    renderWithRouter(<About />);
+    const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const image = screen.getByRole('img');
+    expect(image.src).toContain(url);
+  });
 });
-
-// it('', () => {});
