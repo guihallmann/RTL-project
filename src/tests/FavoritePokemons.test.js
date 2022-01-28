@@ -22,4 +22,3 @@ describe('Testing FavoritePokemons component', () => {
     expect(cards).toHaveLength(1);
   });
 });
-it('', () => {});
