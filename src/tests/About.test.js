@@ -20,6 +20,6 @@ describe('Testing About component', () => {
     renderWithRouter(<About />);
     const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const image = screen.getByRole('img');
-    expect(image.src).toContain(url);
+    expect(image.src).toContain(url); // https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src
   });
 });

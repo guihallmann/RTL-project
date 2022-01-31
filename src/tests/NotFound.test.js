@@ -14,4 +14,3 @@ describe('Testing NotFound component', () => {
     expect(image.src).toContain(url);
   });
 });
-it('', () => {});
