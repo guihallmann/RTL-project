@@ -1,6 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -15,7 +16,7 @@ describe('Testing Pokedex component', () => {
   });
   it('Should show next Pokémon on the list when clicking "Próximo Pokémon"', () => {
     renderWithRouter(<App />);
-    const nextBtn = screen.getByTestId(name);
+    const nextBtn = screen.getByTestId('next-pokemon');
     expect(nextBtn).toBeInTheDocument();
     userEvent.click(nextBtn);
     const nextPokemon = screen.getByTestId(name);
