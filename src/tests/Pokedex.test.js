@@ -5,6 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 const totalFilterButtons = 7;
+const name = 'pokemon-name';
 
 describe('Testing Pokedex component', () => {
   it('Should have an h2 with text "Encountered pokémons"', () => {
@@ -14,15 +15,15 @@ describe('Testing Pokedex component', () => {
   });
   it('Should show next Pokémon on the list when clicking "Próximo Pokémon"', () => {
     renderWithRouter(<App />);
-    const nextBtn = screen.getByTestId('next-pokemon');
+    const nextBtn = screen.getByTestId(name);
     expect(nextBtn).toBeInTheDocument();
     userEvent.click(nextBtn);
-    const nextPokemon = screen.getByTestId('pokemon-name');
+    const nextPokemon = screen.getByTestId(name);
     expect(nextPokemon).toHaveTextContent('Charmander');
   });
   it('Should show only one Pokémon at a time', () => {
     renderWithRouter(<App />);
-    const card = screen.getAllByTestId('pokemon-name');
+    const card = screen.getAllByTestId(name);
     expect(card).toHaveLength(1);
   });
   it('Should have buttons for every Pokémon type', () => {
